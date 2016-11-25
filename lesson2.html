@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>React project. Lesson2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+	<script src="js/react.js"></script>
+	<script src="js/react-dom.js"></script>
+	<script src="js/browser.js"></script>
+</head>
+<body>
+	
+	<nav class="navbar navbar-default">
+		<ul class="nav navbar-nav">
+			<li><a href="index.html">Home</a></li>
+			<li><a href="lesson1.html">Lesson 1</a></li>
+			<li class="active"><a href="/">Lesson 2</a></li>
+		</ul>
+	</nav>
+
+	<div id="content"></div>
+
+	<script type="text/babel">
+		var CONTACTS = [
+			{
+				id: 1,
+				name: 'Dart Vader',
+				phoneNumber: '+380923423234'
+			}, {
+				id: 2,
+				name: 'Princess Leia',
+				phoneNumber: '+38066234234'
+			}, {
+				id: 3,
+				name: 'Luke Skywalker',
+				phoneNumber: '+38095234234'
+			}, {
+				id: 4,
+				name: 'Max',
+				phoneNumber: '+38023234234'
+			}
+		];
+
+		var Contact = React.createClass({
+			render: function() {
+				return (
+					<li> 
+						<div>{this.props.name}</div>
+						<div>{this.props.phoneNumber}</div>
+					</li>
+				);
+			}
+		});
+
+		var ContactsList = React.createClass({
+			getInitialState: function() {
+				return {
+					displayedContacts: CONTACTS
+				};
+			},
+
+			handleSearch: function(event) {
+				var searchQuery = event.target.value.toLowerCase();
+				var displayedContacts = CONTACTS.filter(function(el){
+					var searchValue = el.name.toLowerCase();
+					return searchValue.indexOf(searchQuery) !== -1;
+				});
+
+				this.setState({
+					displayedContacts: displayedContacts
+				});
+			},
+
+			render: function() {
+				return (
+					<div>
+						<input type="text" onChange={this.handleSearch} />
+						<ul>
+							{
+								this.state.displayedContacts.map(function(el){
+									return <Contact 
+										key={el.id} 
+										name={el.name}
+										phoneNumber={el.phoneNumber} />;
+								})
+							}
+						</ul>
+					</div>
+				);
+			}
+		});
+
+		ReactDOM.render(
+			<ContactsList />,
+			document.getElementById("content")
+		);
+	</script>
+
+</body>
+</html>
