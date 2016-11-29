@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>React project. Lesson2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" >
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <script src="js/jquery-1.12.4.js"></script>
+
+	<script>
+		function displayTime() {
+			var now = new Date();
+			var elt = document.getElementById("clock");
+			
+			elt.innerHTML = now.toLocaleTimeString();
+
+			setTimeout(displayTime, 1000);
+
+			
+var i = 0;
+					while ( i < 10) {
+					var k =+ i;
+					document.getElementById("test").innerHTML = screen.availWwidth;
+					//console.log(history);
+					//setTimeout(i, 2000);
+					//console.log(i);
+					i++;
+				}
+			
+		}
+		window.navigation;
+		window.onload = displayTime;
+	</script>
+</head>
+<body>
+	
+	<nav class="navbar navbar-default">
+		<ul class="nav navbar-nav">
+			<li><a href="index.html">Home</a></li>
+			<li><a href="lesson1.html">Lesson 1</a></li>
+			<li class="active"><a href="/">Lesson 2</a></li>
+		</ul>
+	</nav>
+
+	<div id="clock"></div>
+
+	<div id="test"></div>
+
+
+</body>
+</html>
